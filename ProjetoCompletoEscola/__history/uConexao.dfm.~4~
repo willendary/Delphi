@@ -1,0 +1,23 @@
+object dmConexao: TdmConexao
+  OldCreateOrder = False
+  Height = 74
+  Width = 353
+  object Conexao: TFDConnection
+    Params.Strings = (
+      
+        'Database=C:\Users\not\OneDrive\'#193'rea de Trabalho\Willian\Curso De' +
+        'lphi\Escola\Dados\ESCOLA.FDB'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'DriverID=FB')
+    Connected = True
+    LoginPrompt = False
+    Left = 24
+    Top = 24
+  end
+  object qrAuxiliar: TFDQuery
+    Connection = Conexao
+    Left = 88
+    Top = 24
+  end
+end

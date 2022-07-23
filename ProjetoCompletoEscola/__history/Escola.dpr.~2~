@@ -1,0 +1,19 @@
+program Escola;
+
+uses
+  Vcl.Forms,
+  UFormAluno in 'UFormAluno.pas' {fmAluno},
+  uClasseAluno in 'uClasseAluno.pas',
+  uConexao in 'uConexao.pas' {dmConexao: TDataModule},
+  uFormConfiguracaoBanco in 'uFormConfiguracaoBanco.pas' {Form1};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TdmConexao, dmConexao);
+  Application.CreateForm(TfmAluno, fmAluno);
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

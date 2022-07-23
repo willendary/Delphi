@@ -1,0 +1,275 @@
+unit UFormAluno;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uClasseAluno, Vcl.StdCtrls,
+  Vcl.ComCtrls, Vcl.ExtCtrls, Data.DB, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids, uConexao, Vcl.Buttons,
+  uFormConfiguracaoBanco, uConexaoClasse, StrUtils;
+
+type
+  TfmAluno = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    edMatricula: TEdit;
+    edNomeAluno: TEdit;
+    dtDataNascimento: TDateTimePicker;
+    edNota1: TEdit;
+    edNota2: TEdit;
+    edNota3: TEdit;
+    btSalvar: TButton;
+    Timer1: TTimer;
+    gridAlunos: TDBGrid;
+    dsAlunos: TDataSource;
+    qrAlunos: TFDQuery;
+    btExcluir: TButton;
+    edMedia: TEdit;
+    Label7: TLabel;
+    btInserir: TButton;
+    lbNota: TLabel;
+    procedure btSalvarClick(Sender: TObject);
+    procedure edNota1Exit(Sender: TObject);
+    procedure edNota2Exit(Sender: TObject);
+    procedure edNota3Exit(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure btExcluirClick(Sender: TObject);
+    procedure dsAlunosDataChange(Sender: TObject; Field: TField);
+    procedure FormShow(Sender: TObject);
+    procedure btInserirClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure gridAlunosDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure ajustaTamanhoColunasGrid;
+    procedure edNota1KeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fmAluno: TfmAluno;
+  Aluno: TAluno;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfmAluno.ajustaTamanhoColunasGrid;
+begin
+  gridAlunos.Columns[0].Width := 50;
+  gridAlunos.Columns[1].Width := 200;
+  gridAlunos.Columns[2].Width := 100;
+  gridAlunos.Columns[3].Width := 40;
+  gridAlunos.Columns[4].Width := 40;
+  gridAlunos.Columns[5].Width := 40;
+end;
+
+procedure TfmAluno.btExcluirClick(Sender: TObject);
+begin
+  try
+    Aluno := TAluno.Create;
+    Aluno.Matricula := qrAlunos.FieldByName('MATRICULA').asInteger;
+    Aluno.Excluir;
+    qrAlunos.Refresh;
+  finally
+    FreeAndNil(Aluno);
+  end;
+end;
+
+procedure TfmAluno.btInserirClick(Sender: TObject);
+begin
+  edMatricula.Clear;
+  edNomeAluno.Clear;
+  dtDataNascimento.Date := Now;
+  edNota1.Clear;
+  edNota2.Clear;
+  edNota3.Clear;
+  edMedia.Clear;
+  lbNota.Caption := '';
+end;
+
+procedure TfmAluno.btSalvarClick(Sender: TObject);
+begin
+  try
+    Aluno := TAluno.Create;
+    Aluno.Matricula := StrToIntDef(edMatricula.Text, -1);
+    Aluno.Nome := edNomeAluno.Text;
+    Aluno.DataNascimento := dtDataNascimento.Date;
+    Aluno.Nota1 := StrToFloatDef(edNota1.Text, 0);
+    Aluno.Nota2 := StrToFloatDef(edNota2.Text, 0);
+    Aluno.Nota3 := StrToFloatDef(edNota3.Text, 0);
+    Aluno.Salvar;
+    qrAlunos.Refresh;
+  finally
+    FreeAndNil(Aluno);
+  end;
+end;
+
+procedure TfmAluno.dsAlunosDataChange(Sender: TObject; Field: TField);
+begin
+  try
+    edMatricula.Text := qrAlunos.FieldByName('MATRICULA').AsString;
+    edNomeAluno.Text := qrAlunos.FieldByName('NOME').AsString;
+    dtDataNascimento.Date := qrAlunos.FieldByName('DATANASCIMENTO').AsDateTime;
+    edNota1.Text := qrAlunos.FieldByName('NOTA1').AsString;
+    edNota2.Text := qrAlunos.FieldByName('NOTA2').AsString;
+    edNota3.Text := qrAlunos.FieldByName('NOTA3').AsString;
+  finally
+
+  end;
+end;
+
+procedure TfmAluno.edNota1Exit(Sender: TObject);
+begin
+  try
+    if not(Aluno.ValidaNota(StrToFloat(edNota1.Text))) then
+    begin
+      edNota1.Text := '';
+    end;
+  except
+  end;
+end;
+
+procedure TfmAluno.edNota1KeyPress(Sender: TObject; var Key: Char);
+begin
+  if not(Key in ['0' .. '9', ',', #8]) then
+    Key := #0;
+end;
+
+procedure TfmAluno.edNota2Exit(Sender: TObject);
+begin
+  try
+    if not(Aluno.ValidaNota(StrToFloat(edNota2.Text))) then
+    begin
+      edNota2.Text := '';
+    end;
+  except
+  end;
+end;
+
+procedure TfmAluno.edNota3Exit(Sender: TObject);
+begin
+  try
+    if not(Aluno.ValidaNota(StrToFloat(edNota3.Text))) then
+    begin
+      edNota3.Text := '';
+    end;
+  except
+  end;
+end;
+
+procedure TfmAluno.FormCreate(Sender: TObject);
+var
+  TelaConfig: TfmConfiguracaoBanco;
+  conexao: TConexao;
+begin
+  if not FileExists(ExtractFilePath(Application.ExeName) + 'Config.ini') then
+  begin
+    ShowMessage('É necessário configurar a conexão com o banco de dados');
+    TelaConfig := TfmConfiguracaoBanco.Create(nil);
+    try
+      TelaConfig.ShowModal;
+
+    finally
+      FreeAndNil(TelaConfig);
+      qrAlunos.Connection := dmConexao.conexao;
+    end;
+
+  end;
+  if FileExists(ExtractFilePath(Application.ExeName) + 'Config.ini') then
+  begin
+    conexao := TConexao.Create(dmConexao.conexao.ConnectionName);
+  end
+  else
+  begin
+    ShowMessage('Arquivo de configuração do banco de dados "' + ExtractFilePath(Application.ExeName) + 'Config.ini' + '" não foi localizado');
+    Application.Terminate;
+    exit;
+  end;
+end;
+
+procedure TfmAluno.FormShow(Sender: TObject);
+begin
+  Aluno := TAluno.Create;
+  qrAlunos.Open;
+  ajustaTamanhoColunasGrid;
+end;
+
+procedure TfmAluno.gridAlunosDrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  If (qrAlunos.FieldByName('CONCEITO').AsString = 'MB') or (qrAlunos.FieldByName('CONCEITO').AsString = 'B') then // condição
+  begin
+    gridAlunos.Canvas.brush.Color := clGreen;
+    gridAlunos.DefaultDrawDataCell(Rect, gridAlunos.Columns[DataCol].Field, State);
+  end
+  else
+    if qrAlunos.FieldByName('CONCEITO').AsString = 'S' then
+    begin
+      gridAlunos.Canvas.brush.Color := clOlive;
+      gridAlunos.DefaultDrawDataCell(Rect, gridAlunos.Columns[DataCol].Field, State);
+    end
+    else
+      if qrAlunos.FieldByName('CONCEITO').AsString = 'I' then
+      begin
+        gridAlunos.Canvas.brush.Color := clred;
+        gridAlunos.DefaultDrawDataCell(Rect, gridAlunos.Columns[DataCol].Field, State);
+      end
+      else
+      begin
+        gridAlunos.DefaultDrawDataCell(Rect, gridAlunos.Columns[DataCol].Field, State);
+      end;
+
+  // Dbgrid1.Canvas.Font.Color := clFuchsia; // coloque aqui a cor desejada
+  // Dbgrid1.DefaultDrawDataCell(Rect, Dbgrid1.columns[DataCol].Field, State);
+end;
+
+procedure TfmAluno.Timer1Timer(Sender: TObject);
+var
+  media: real;
+begin
+  if (edNomeAluno.Text <> '') and (edNota1.Text <> '') and (edNota2.Text <> '') and (edNota3.Text <> '') then
+  begin
+    btSalvar.Enabled := true;
+    media := (StrToFloat(edNota1.Text) + StrToFloat(edNota2.Text) + StrToFloat(edNota3.Text)) / 3;
+    edMedia.Text := FormatFloat('0.00', media);
+  end
+  else
+  begin
+    btSalvar.Enabled := false;
+    edMedia.Text := '';
+    lbNota.Caption := ''
+  end;
+  if edMedia.Text <> '' then
+  begin
+    case AnsiIndexStr(Aluno.DefineConceito(StrToFloat(edNota1.Text), StrToFloat(edNota2.Text), StrToFloat(edNota3.Text)), ['MB', 'B', 'S', 'I']) of
+      0:
+        begin
+          lbNota.Caption := 'Muito Bom';
+          lbNota.Font.Color := clGreen;
+        end;
+      1:
+        begin
+          lbNota.Caption := 'Bom';
+          lbNota.Font.Color := clGreen;
+        end;
+      2:
+        begin
+          lbNota.Caption := 'Suficiente';
+          lbNota.Font.Color := clOlive;
+        end;
+      3:
+        begin
+          lbNota.Caption := 'Insuficiente';
+          lbNota.Font.Color := clred;
+        end;
+    end;
+  end;
+end;
+
+end.

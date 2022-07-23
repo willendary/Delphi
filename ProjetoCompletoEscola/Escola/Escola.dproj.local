@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/04/02 09:25:39.000.969,=C:\Users\aluno\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/05/20 08:27:11.000.410,=C:\Users\aluno\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/06/03 15:35:56.000.550,=C:\Users\aluno\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/06/10 11:05:42.000.362,=C:\Users\aluno\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/07/16 08:37:05.000.020,=C:\Users\aluno\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/07/16 08:38:16.000.520,C:\Users\aluno\Desktop\Escola\UFormAluno.pas=C:\Users\aluno\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/07/16 08:38:16.000.520,C:\Users\aluno\Desktop\Escola\UFormAluno.dfm=C:\Users\aluno\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2022/07/16 08:38:32.000.159,C:\Users\aluno\Desktop\Escola\Escola.dproj=C:\Users\aluno\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2022/07/16 08:39:10.000.790,=C:\Users\aluno\Desktop\Escola\Unit1.pas</Transaction>
+    <Transaction>2022/07/16 08:39:19.000.067,C:\Users\aluno\Desktop\Escola\uClasseAluno.pas=C:\Users\aluno\Desktop\Escola\Unit1.pas</Transaction>
+    <Transaction>2022/07/16 08:46:06.000.321,=C:\Users\aluno\Desktop\Escola\Unit1.pas</Transaction>
+    <Transaction>2022/07/16 08:48:44.000.562,C:\Users\aluno\Desktop\Escola\uConexao.pas=C:\Users\aluno\Desktop\Escola\Unit1.pas</Transaction>
+    <Transaction>2022/07/16 08:48:44.000.562,C:\Users\aluno\Desktop\Escola\uConexao.dfm=C:\Users\aluno\Desktop\Escola\Unit1.dfm</Transaction>
+    <Transaction>2022/07/21 09:12:58.112,=C:\Users\not\OneDrive\Área de Trabalho\Willian\Curso Delphi\Escola\Unit1.pas</Transaction>
+    <Transaction>2022/07/21 09:14:29.932,C:\Users\not\OneDrive\Área de Trabalho\Willian\Curso Delphi\Escola\uFormConfiguracaoBanco.dfm=C:\Users\not\OneDrive\Área de Trabalho\Willian\Curso Delphi\Escola\Unit1.dfm</Transaction>
+    <Transaction>2022/07/21 09:14:29.932,C:\Users\not\OneDrive\Área de Trabalho\Willian\Curso Delphi\Escola\uFormConfiguracaoBanco.pas=C:\Users\not\OneDrive\Área de Trabalho\Willian\Curso Delphi\Escola\Unit1.pas</Transaction>
+    <Transaction>2022/07/21 09:33:57.284,=C:\Users\not\OneDrive\Área de Trabalho\Willian\Curso Delphi\Escola\Unit1.pas</Transaction>
+    <Transaction>2022/07/21 09:34:34.270,C:\Users\not\OneDrive\Área de Trabalho\Willian\Curso Delphi\Escola\uConexaoClasse.pas=C:\Users\not\OneDrive\Área de Trabalho\Willian\Curso Delphi\Escola\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

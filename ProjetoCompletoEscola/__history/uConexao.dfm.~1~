@@ -1,0 +1,20 @@
+object dmConexao: TdmConexao
+  OldCreateOrder = False
+  Height = 74
+  Width = 353
+  object Conexao: TFDConnection
+    Params.Strings = (
+      'Database=C:\Users\aluno\Desktop\Escola\Dados\ESCOLA.FDB'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'DriverID=FB')
+    Connected = True
+    Left = 24
+    Top = 24
+  end
+  object qrAuxiliar: TFDQuery
+    Connection = Conexao
+    Left = 88
+    Top = 24
+  end
+end
