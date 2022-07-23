@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2022/06/30 08:41:24.956,=C:\Users\not\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/06/30 08:42:05.423,C:\Users\not\OneDrive\Área de Trabalho\Willian\Curso Delphi\API\UApi.dfm=C:\Users\not\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2022/06/30 08:42:05.423,C:\Users\not\OneDrive\Área de Trabalho\Willian\Curso Delphi\API\UApi.pas=C:\Users\not\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/06/30 08:42:11.934,C:\Users\not\OneDrive\Área de Trabalho\Willian\Curso Delphi\API\API.dproj=C:\Users\not\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
